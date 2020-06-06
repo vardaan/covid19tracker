@@ -3,9 +3,8 @@ import NavBar from '../components/NavBar';
 import SumarryView from '../components/SumarryView';
 import CountryView from '../components/CountryView';
 import React from 'react';
-import { CovidData } from '../data/CovidData';
-import { TimeLineData, CovidDatav2 } from '../data/CovidData2';
 import { CountryDataResponse } from '../data/CountryData';
+import { CovidDatav2 } from '../data/CovidData2';
 
 interface State {
     data: CovidDatav2;
@@ -29,7 +28,7 @@ export default class Home extends React.Component<any, State> {
     getCountryData = async () => {
         try {
             const res = await fetch('https://corona-api.com/countries');
-						const data = (await res.json()) as CountryDataResponse;
+            const data = (await res.json()) as CountryDataResponse;
             data && this.setState({ countryData: data });
         } catch (e) {}
     };
@@ -47,13 +46,12 @@ export default class Home extends React.Component<any, State> {
                 </Head>
                 <NavBar />
                 <main>
-                    {data &&
-                        countryData &&(
-                            <>
-                                <SumarryView data={data} />
-                                <CountryView data={countryData} />
-                            </>
-                        )}
+                    {data && countryData && (
+                        <>
+                            <SumarryView data={data} />
+                            <CountryView data={countryData} />
+                        </>
+                    )}
                 </main>
 
                 <footer></footer>
