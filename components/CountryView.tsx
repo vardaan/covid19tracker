@@ -1,8 +1,11 @@
 import { Country } from '../data/CovidData';
 import { formatNumber } from '../utils/utils';
-const CountryView = ({ data }: { data: Country[] }) => {
+import { CountryData, CountryDataResponse } from '../data/CountryData';
+const CountryView = ({ data }: { data: CountryDataResponse }) => {
     const headers = ['Countries', 'Total Confirmed', 'Total Deaths', 'Total Recovered'];
-    const sortedData = data.sort((a: Country, b: Country) => b.TotalConfirmed - a.TotalConfirmed);
+    const sortedData = data.data.sort(
+        (a: CountryData, b: CountryData) => b.latest_data.confirmed - a.latest_data.confirmed,
+    );
     return (
         <div className={'maincontainer'}>
             <table className="table">
@@ -13,11 +16,11 @@ const CountryView = ({ data }: { data: Country[] }) => {
                 </thead>
                 <tbody>
                     {sortedData.map((it) => (
-                        <tr className={'row'} key={it.Country}>
-                            <td>{it.Country}</td>
-                            <td>{formatNumber(it.TotalConfirmed)}</td>
-                            <td>{formatNumber(it.TotalDeaths)}</td>
-                            <td>{formatNumber(it.TotalRecovered)}</td>
+                        <tr className={'row'} key={it.code}>
+                            <td>{it.name}</td>
+                            <td>{formatNumber(it.latest_data.confirmed)}</td>
+                            <td>{formatNumber(it.latest_data.deaths)}</td>
+                            <td>{formatNumber(it.latest_data.recovered)}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -48,7 +51,7 @@ const CountryView = ({ data }: { data: Country[] }) => {
 
                 .maincontainer {
                     display: flex;
-                    width: 80%;
+                    width: 85%;
                     margin-top: 64px;
                     background: rgba(33, 33, 33, 0.95);
                     padding: 24px;

@@ -1,24 +1,27 @@
 import SummaryCard from './SummaryCard';
-import { Global } from '../data/CovidData';
-const SumarryView = ({ data }: { data: Global }) => {
+import { CovidDatav2 } from '../data/CovidData2';
+const SumarryView = ({ data }: { data: CovidDatav2 }) => {
+    const countryData = data.data[0];
+
     return (
         <div className={'container'}>
             <SummaryCard
                 title={'Total Cases'}
-                count={data.TotalConfirmed}
-                subtitle={data.NewConfirmed + ' new cases'}
+                count={countryData.confirmed}
+                subtitle={countryData.new_confirmed + ' new cases'}
                 color={'#F33460'}
             />
+            <SummaryCard title={'Total Active Cases'} count={countryData.active} color={'#F33460'} />
             <SummaryCard
                 title={'Total deaths'}
-                count={data.TotalDeaths}
-                subtitle={data.NewDeaths + ' new deaths'}
+                count={countryData.deaths}
+                subtitle={countryData.new_deaths + ' new deaths'}
                 color={'#F33460'}
             />
             <SummaryCard
                 title={'Total Recovery'}
-                count={data.TotalRecovered}
-                subtitle={data.NewRecovered + ' newly recovered'}
+                count={countryData.recovered}
+                subtitle={countryData.new_recovered + ' newly recovered'}
                 color={'#02EEAB'}
             />
             <style jsx>{`

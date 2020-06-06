@@ -4,25 +4,37 @@ import SumarryView from '../components/SumarryView';
 import CountryView from '../components/CountryView';
 import React from 'react';
 import { CovidData } from '../data/CovidData';
+import { TimeLineData, CovidDatav2 } from '../data/CovidData2';
+import { CountryDataResponse } from '../data/CountryData';
 
 interface State {
-    data: CovidData;
+    data: CovidDatav2;
+    countryData: CountryDataResponse;
 }
 export default class Home extends React.Component<any, State> {
     constructor(props) {
         super(props);
-        this.state = { data: null };
+        this.state = { data: null, countryData: null };
     }
 
     async componentDidMount() {
         try {
-            const res = await fetch('https://api.covid19api.com/summary');
-            const data = (await res.json()) as CovidData;
+            const timelineRes = await fetch('https://corona-api.com/timeline');
+            const data = (await timelineRes.json()) as CovidDatav2;
             data && this.setState({ data });
         } catch (e) {}
+        this.getCountryData();
     }
+
+    getCountryData = async () => {
+        try {
+            const res = await fetch('https://corona-api.com/countries');
+						const data = (await res.json()) as CountryDataResponse;
+            data && this.setState({ countryData: data });
+        } catch (e) {}
+    };
     render() {
-        const { data } = this.state;
+        const { data, countryData } = this.state;
         return (
             <div className="container">
                 <Head>
@@ -35,12 +47,13 @@ export default class Home extends React.Component<any, State> {
                 </Head>
                 <NavBar />
                 <main>
-                    {data && (
-                        <>
-                            <SumarryView data={data.Global} />
-                            <CountryView data={data.Countries} />
-                        </>
-                    )}
+                    {data &&
+                        countryData &&(
+                            <>
+                                <SumarryView data={data} />
+                                <CountryView data={countryData} />
+                            </>
+                        )}
                 </main>
 
                 <footer></footer>

@@ -4,9 +4,11 @@ const SummaryCard = (props) => {
         <div className={'container'}>
             <div className={'title'}>{props.title}</div>
             <div className={'count'}>{formatNumber(props.count)}</div>
-            <div className={'subtitle'} style={{ color: props.color }}>
-                {'+ ' + props.subtitle}
-            </div>
+            {props.subtitle && (
+                <div className={'subtitle'} style={{ color: props.color }}>
+                    {'+ ' + props.subtitle}
+                </div>
+            )}
             <style jsx>{`
                 .container {
                     background: rgba(33, 33, 33, 0.95);
