@@ -10,7 +10,7 @@ const SumarryView = ({ data }: { data: Global }) => {
                 .container {
                     display: flex;
                     justify-content: space-between;
-                    width: 100%;
+                    width: 80%;
                     margin-top: 64px;
                 }
             `}</style>

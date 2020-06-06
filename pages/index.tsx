@@ -28,6 +28,10 @@ export default class Home extends React.Component<any, State> {
                 <Head>
                     <title>Covid19 Live Statistics</title>
                     <link rel="icon" href="/favicon.ico" />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+                        rel="stylesheet"
+                    ></link>
                 </Head>
                 <NavBar />
                 <main>
@@ -86,8 +90,8 @@ export default class Home extends React.Component<any, State> {
                         padding: 0;
                         margin: 0;
                         background: #121212;
-                        font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
-                            Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                        font-family: Roboto 100 200 300 400, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu,
+                            Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
                     }
 
                     * {
