@@ -1,4 +1,3 @@
-import { Country } from '../data/CovidData';
 import { formatNumber } from '../utils/utils';
 import { CountryData, CountryDataResponse } from '../data/CountryData';
 const CountryView = ({ data }: { data: CountryDataResponse }) => {
