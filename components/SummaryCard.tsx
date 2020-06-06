@@ -4,7 +4,9 @@ const SummaryCard = (props) => {
         <div className={'container'}>
             <div className={'title'}>{props.title}</div>
             <div className={'count'}>{formatNumber(props.count)}</div>
-            <div className={'subtitle'}>{'+ ' + props.subtitle}</div>
+            <div className={'subtitle'} style={{ color: props.color }}>
+                {'+ ' + props.subtitle}
+            </div>
             <style jsx>{`
                 .container {
                     background: rgba(33, 33, 33, 0.95);
@@ -12,14 +14,13 @@ const SummaryCard = (props) => {
                     margin-top: 32px;
                     margin-right: 32px;
                     margin-left: 32px;
-                    border-radius: 4px;
-                    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.09), 0px 2px 5px rgba(0, 0, 0, 0.15);
+                    border-radius: 8px;
+                    min-width: 300px;
                 }
                 .title {
-                    /* Body 1 / Roboto Regular */
                     font-family: Roboto;
                     font-style: normal;
-                    font-weight: normal;
+                    font-weight: 200;
                     font-size: 18px;
                     line-height: 28px;
                     letter-spacing: 0.5px;
@@ -41,7 +42,6 @@ const SummaryCard = (props) => {
                     font-weight: 300;
                     font-size: 14px;
                     line-height: 28px;
-                    /* or 156% */
                     letter-spacing: 0.5px;
                     color: rgba(255, 255, 255, 0.7);
                 }

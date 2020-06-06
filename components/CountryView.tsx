@@ -50,6 +50,9 @@ const CountryView = ({ data }: { data: Country[] }) => {
                     display: flex;
                     width: 80%;
                     margin-top: 64px;
+                    background: rgba(33, 33, 33, 0.95);
+                    padding: 24px;
+                    border-radius: 8px;
                 }
                 .line {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -59,8 +62,8 @@ const CountryView = ({ data }: { data: Country[] }) => {
                 .table {
                     width: 100%;
                     justify-content: space-between;
-                    margin-top: 48px;
                     border-collapse: collapse;
+                    padding-left: 16px;
                 }
                 .row {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
