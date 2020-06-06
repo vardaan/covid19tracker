@@ -1,4 +1,5 @@
 import { Country } from '../data/CovidData';
+import { formatNumber } from '../utils/utils';
 const CountryView = ({ data }: { data: Country[] }) => {
     const headers = ['Countries', 'Total Confirmed', 'Total Deaths', 'Total Recovered'];
     const sortedData = data.sort((a: Country, b: Country) => b.TotalConfirmed - a.TotalConfirmed);
@@ -14,9 +15,9 @@ const CountryView = ({ data }: { data: Country[] }) => {
                     {sortedData.map((it) => (
                         <tr className={'row'} key={it.Country}>
                             <td>{it.Country}</td>
-                            <td>{it.TotalConfirmed}</td>
-                            <td>{it.TotalDeaths}</td>
-                            <td>{it.TotalRecovered}</td>
+                            <td>{formatNumber(it.TotalConfirmed)}</td>
+                            <td>{formatNumber(it.TotalDeaths)}</td>
+                            <td>{formatNumber(it.TotalRecovered)}</td>
                         </tr>
                     ))}
                 </tbody>
