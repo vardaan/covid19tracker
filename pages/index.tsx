@@ -5,6 +5,7 @@ import CountryView from '../components/CountryView';
 import React from 'react';
 import { CountryDataResponse } from '../data/CountryData';
 import { CovidDatav2 } from '../data/CovidData2';
+import * as firebase from 'firebase';
 
 interface State {
     data: CovidDatav2;
@@ -23,6 +24,26 @@ export default class Home extends React.Component<any, State> {
             data && this.setState({ data });
         } catch (e) {}
         this.getCountryData();
+
+        const isProduction = process.env.NODE_ENV === 'production';
+        isProduction && this.initialiseFirebase();
+    }
+
+    initialiseFirebase() {
+        var firebaseConfig = {
+            apiKey: process.env.FIREBASE_API_KEY,
+            authDomain: process.env.FIREBASE_API_DOMAIN,
+            databaseURL: process.env.FIREBASE_API_DB_URL,
+            projectId: process.env.FIREBASE_API_PROJECT_ID,
+            storageBucket: process.env.FIREBASE_API_STORAGE_BUCKET,
+            messagingSenderId: process.env.FIREBASE_API_MESSAGING_SENDER_ID,
+            appId: process.env.FIREBASE_API_APP_ID,
+            measurementId: process.env.FIREBASE_API_MEASUREMENT_ID,
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const app = firebase.analytics();
+        app.logEvent('page_view', {});
     }
 
     getCountryData = async () => {
