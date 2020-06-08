@@ -60,10 +60,17 @@ export default class Home extends React.Component<any, State> {
                 <Head>
                     <title>Covid19 Live Statistics</title>
                     <link rel="icon" href="/favicon.ico" />
+                    <meta
+                        name="description"
+                        content="Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients, tests, and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, and number of tests per 1 Million population. Historical data and info. Daily charts, graphs, news and updates"
+                    />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
                     <link
                         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
                         rel="stylesheet"
-                    ></link>
+                    />
                 </Head>
                 <NavBar />
                 <main>
@@ -75,7 +82,7 @@ export default class Home extends React.Component<any, State> {
                     )}
                 </main>
 
-                <footer></footer>
+                <footer />
 
                 <style jsx>{`
                     .container {

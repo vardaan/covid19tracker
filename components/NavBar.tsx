@@ -1,7 +1,7 @@
 const NavBar = () => (
     <div>
         <div className={'container'}>
-            <img className={'applogo'} src={'/app-logo.png'} />
+            <img className={'applogo'} src={'/app-logo.png'} alt='App Icon Mask' />
             <div className={'title'}>Covid19 Live stats</div>
         </div>
         <style jsx>{`
