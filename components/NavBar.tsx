@@ -1,7 +1,7 @@
 const NavBar = () => (
     <div>
         <div className={'container'}>
-            <img className={'applogo'} src={'/app-logo.png'} alt='App Icon Mask' />
+            <img className={'applogo'} src={'/app-logo.png'} alt="App Icon Mask" />
             <div className={'title'}>Covid19 Live stats</div>
         </div>
         <style jsx>{`
@@ -26,6 +26,17 @@ const NavBar = () => (
             .applogo {
                 height: 72px;
                 margin-left: 24px;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .title {
+                    font-size: 24px;
+                }
+                .applogo {
+                    height: 52px;
+										margin-left: 24px;
+										margin-top:10px;
+                }
             }
         `}</style>
     </div>

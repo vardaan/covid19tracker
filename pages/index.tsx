@@ -5,7 +5,7 @@ import CountryView from '../components/CountryView';
 import React from 'react';
 import { CountryDataResponse } from '../data/CountryData';
 import { CovidDatav2 } from '../data/CovidData2';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 interface State {
     data: CovidDatav2;

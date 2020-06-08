@@ -11,7 +11,7 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                 <thead>
                     {headers.map((it) => (
                         <tr key={it} className={'header'}>
-                            <th >{it}</th>
+                            <th id={'header-text'}>{it}</th>
                         </tr>
                     ))}
                 </thead>
@@ -31,7 +31,7 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     font-family: Roboto;
                     font-style: normal;
                     font-weight: 300;
-                    font-size: 28px;
+                    font-size: 24px;
                     line-height: 33px;
                     letter-spacing: -0.5px;
                     text-align: start;
@@ -42,7 +42,7 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     font-family: Roboto;
                     font-style: normal;
                     font-weight: 300;
-                    font-size: 22px;
+                    font-size: 20px;
                     padding-top: 12px;
                     padding-bottom: 12px;
                     line-height: 33px;
@@ -81,14 +81,26 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    align-items: ;
                 }
                 .header {
 										flex:0.25;
+										color: rgba(255, 255, 255, 0.6);
+								}
+
+								#header-text {
+									color: rgba(255, 255, 255, 1.0);
 								}
 								.rowItem{
 									flex:0.25;
+									color: rgba(255, 255, 255, 1.0);
 								}
+								@media only screen and (max-width: 600px) {
+								  th {
+                    font-size: 16px;
+                }
+                td {
+                    font-size: 12px;
+                }
             `}</style>
         </div>
     );
