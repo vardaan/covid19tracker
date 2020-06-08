@@ -10,16 +10,18 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
             <table className="table">
                 <thead>
                     {headers.map((it) => (
-                        <th className={'header'}>{it}</th>
+                        <tr key={it} className={'header'}>
+                            <th >{it}</th>
+                        </tr>
                     ))}
                 </thead>
                 <tbody>
                     {sortedData.map((it) => (
                         <tr className={'row'} key={it.code}>
-                            <td>{it.name}</td>
-                            <td>{formatNumber(it.latest_data.confirmed)}</td>
-                            <td>{formatNumber(it.latest_data.deaths)}</td>
-                            <td>{formatNumber(it.latest_data.recovered)}</td>
+                            <td className="rowItem">{it.name}</td>
+                            <td className="rowItem">{formatNumber(it.latest_data.confirmed)}</td>
+                            <td className="rowItem">{formatNumber(it.latest_data.deaths)}</td>
+                            <td className="rowItem">{formatNumber(it.latest_data.recovered)}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -69,10 +71,24 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                 }
                 .row {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-content: flex-start;
                 }
                 thead {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: ;
                 }
+                .header {
+										flex:0.25;
+								}
+								.rowItem{
+									flex:0.25;
+								}
             `}</style>
         </div>
     );
