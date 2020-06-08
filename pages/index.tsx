@@ -5,7 +5,7 @@ import CountryView from '../components/CountryView';
 import React from 'react';
 import { CountryDataResponse } from '../data/CountryData';
 import { CovidDatav2 } from '../data/CovidData2';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 interface State {
     data: CovidDatav2;
@@ -74,12 +74,10 @@ export default class Home extends React.Component<any, State> {
                 </Head>
                 <NavBar />
                 <main>
-                    {data && countryData && (
-                        <>
-                            <SumarryView data={data} />
-                            <CountryView data={countryData} />
-                        </>
-                    )}
+                    <>
+                        {data && <SumarryView data={data} />}
+                        {countryData && <CountryView data={countryData} />}
+                    </>
                 </main>
 
                 <footer />
