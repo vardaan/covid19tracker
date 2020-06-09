@@ -46,7 +46,20 @@ const SummaryCard = (props) => {
                     line-height: 28px;
                     letter-spacing: 0.5px;
                     color: rgba(255, 255, 255, 0.7);
+								}
+								@media only screen and (max-width: 600px) {
+									.container {
+                    min-width: 200px;
                 }
+                .title {
+                    font-size: 14px;
+                }
+                .count {
+                    font-size: 32px;
+                }
+                .subtitle {
+                    font-size: 12px;
+								}
             `}</style>
         </div>
     );
