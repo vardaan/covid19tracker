@@ -1,7 +1,11 @@
+import Link from 'next/link';
+
 const NavBar = () => (
     <div>
         <div className={'container'}>
-            <img className={'applogo'} src={'/app-logo.png'} alt="App Icon Mask" />
+            <Link href="/">
+                <a><img className={'applogo'} src={'/app-logo.png'} alt="App Icon Mask" /></a>
+            </Link>
             <div className={'title'}>Covid19 Live stats</div>
         </div>
         <style jsx>{`
