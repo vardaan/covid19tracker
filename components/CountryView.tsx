@@ -2,6 +2,7 @@ import { formatNumber } from '../utils/utils';
 import React from 'react';
 import { CountryData, CountryDataResponse } from '../data/CountryData';
 import Router from 'next/router';
+import Link from 'next/link';
 
 const CountryView = ({ data }: { data: CountryDataResponse }) => {
     const headers = ['Countries', 'Total Confirmed', 'Total Deaths', 'Total Recovered'];
@@ -22,9 +23,9 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     {sortedData.map((it) => (
                         <tr className={'row'} key={it.code}>
                             <td className="rowItem">
-                                <span onClick={() => Router.push('/country/:slug', `/country/${it.code}`)}>
-                                    {it.name}
-                                </span>
+                                <Link href={`/country/${it.code}`}>
+                                    <a> {it.name}</a>
+                                </Link>
                             </td>
                             <td className="rowItem">{formatNumber(it.latest_data.confirmed)}</td>
                             <td className="rowItem">{formatNumber(it.latest_data.deaths)}</td>
@@ -46,9 +47,6 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     color: rgba(255, 255, 255, 0.6);
                     text-decoration: underline;
                 }
-                span :hover {
-                    color: #02EEAB
-                } 
                 th {
                     font-family: Roboto;
                     font-style: normal;
@@ -79,7 +77,14 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     background: #282B33;
                     padding: 24px;
                     border-radius: 8px;
-                }
+								}
+								a {
+									color: rgba(255, 255, 255, 0.6);
+								}
+
+								a :hover{
+									color: #02EEAB
+								}
                 .line {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
                     height: 1px;

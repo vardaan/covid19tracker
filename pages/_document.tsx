@@ -9,7 +9,9 @@ class MyDocument extends Document {
     render() {
         return (
             <Html lang="en">
-                <Head />
+                <Head>
+                    <meta name="msvalidate.01" content="E35E9238C0E1A2E508FFC532C39F2490" />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />
