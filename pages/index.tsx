@@ -80,7 +80,9 @@ export default class Home extends React.Component<any, State> {
                     </>
                 </main>
 
-                <footer />
+                <footer>
+                    <a href={'mailto:zen.labs@outlook.com'}>Contact us</a>
+                </footer>
 
                 <style jsx>{`
                     .container {
@@ -90,6 +92,20 @@ export default class Home extends React.Component<any, State> {
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
+                    }
+
+                    a {
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: 200;
+                        font-size: 18px;
+                        line-height: 28px;
+                        letter-spacing: 0.5px;
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+
+                    a :hover {
+                        color: #02eeab;
                     }
 
                     main {

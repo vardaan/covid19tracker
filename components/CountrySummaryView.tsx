@@ -30,7 +30,7 @@ const CountrySummaryView = ({ data }: { data: CountryDetailResponse }) => {
 
             <SummaryCard
                 className={'item'}
-                title={'Total Recovery'}
+                title={'Total Critical'}
                 count={countryData.critical}
                 subtitle={''}
                 color={'#02EEAB'}
