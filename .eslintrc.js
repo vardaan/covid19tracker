@@ -7,6 +7,9 @@ module.exports = {
             jsx: true, // Allows for the parsing of JSX
         },
     },
+    rules: {
+        'react-in-jsx-scope': 0,
+    },
     extends: [
         'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
         'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin

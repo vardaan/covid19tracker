@@ -1,8 +1,8 @@
 import SummaryCard from './SummaryCard';
-import { CovidDatav2 } from '../data/CovidData2';
 import React from 'react';
-const SumarryView = ({ data }: { data: CovidDatav2 }) => {
-    const countryData = data.data[0];
+import { CountryDetailResponse } from '../data/CountryDetail';
+const CountrySummaryView = ({ data }: { data: CountryDetailResponse }) => {
+    const countryData = data.data.latest_data;
 
     return (
         <div className={'container'}>
@@ -10,22 +10,21 @@ const SumarryView = ({ data }: { data: CovidDatav2 }) => {
                 className={'item'}
                 title={'Total Cases'}
                 count={countryData.confirmed}
-                subtitle={countryData.new_confirmed + ' new cases'}
+                subtitle={''}
                 color={'#F33460'}
             />
-            <SummaryCard className={'item'} title={'Total Active Cases'} count={countryData.active} color={'#F33460'} />
             <SummaryCard
                 className={'item'}
                 title={'Total deaths'}
                 count={countryData.deaths}
-                subtitle={countryData.new_deaths + ' new deaths'}
+                subtitle={''}
                 color={'#F33460'}
             />
             <SummaryCard
                 className={'item'}
                 title={'Total Recovery'}
                 count={countryData.recovered}
-                subtitle={countryData.new_recovered + ' newly recovered'}
+                subtitle={''}
                 color={'#02EEAB'}
             />
 
@@ -33,14 +32,14 @@ const SumarryView = ({ data }: { data: CovidDatav2 }) => {
                 className={'item'}
                 title={'Total Recovery'}
                 count={countryData.critical}
-                subtitle={countryData.new_recovered + ' newly recovered'}
+                subtitle={''}
                 color={'#02EEAB'}
             />
             <style jsx>{`
                 .container {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                    column-gap: 20px;
+                    column-gap: 10px;
                     row-gap: 10px;
                     width: 90%;
                 }
@@ -48,4 +47,4 @@ const SumarryView = ({ data }: { data: CovidDatav2 }) => {
         </div>
     );
 };
-export default SumarryView;
+export default CountrySummaryView;

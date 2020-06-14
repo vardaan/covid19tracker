@@ -9,6 +9,7 @@ export interface TimeLineData {
     new_recovered: number;
     new_deaths: number;
     is_in_progress: boolean;
+    critical: number;
 }
 
 export interface CovidDatav2 {

@@ -1,10 +1,13 @@
 import { formatNumber } from '../utils/utils';
+import React from 'react';
 import { CountryData, CountryDataResponse } from '../data/CountryData';
+import Router from 'next/router';
+
 const CountryView = ({ data }: { data: CountryDataResponse }) => {
     const headers = ['Countries', 'Total Confirmed', 'Total Deaths', 'Total Recovered'];
-    const sortedData = data.data.sort(
-        (a: CountryData, b: CountryData) => b.latest_data.confirmed - a.latest_data.confirmed,
-    );
+    const sortedData = data.data
+        .sort((a: CountryData, b: CountryData) => b.latest_data.confirmed - a.latest_data.confirmed)
+        .filter((it) => it.latest_data.confirmed !== 0);
     return (
         <div className={'maincontainer'}>
             <table className="table">
@@ -18,7 +21,11 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                 <tbody>
                     {sortedData.map((it) => (
                         <tr className={'row'} key={it.code}>
-                            <td className="rowItem">{it.name}</td>
+                            <td className="rowItem">
+                                <span onClick={() => Router.push('/country/:slug', `/country/${it.code}`)}>
+                                    {it.name}
+                                </span>
+                            </td>
                             <td className="rowItem">{formatNumber(it.latest_data.confirmed)}</td>
                             <td className="rowItem">{formatNumber(it.latest_data.deaths)}</td>
                             <td className="rowItem">{formatNumber(it.latest_data.recovered)}</td>
@@ -27,6 +34,21 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                 </tbody>
             </table>
             <style jsx>{`
+               span {
+                  font-family: Roboto;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 20px;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    line-height: 33px;
+                    letter-spacing: -0.5px;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-decoration: underline;
+                }
+                span :hover {
+                    color: #02EEAB
+                } 
                 th {
                     font-family: Roboto;
                     font-style: normal;
@@ -54,7 +76,7 @@ const CountryView = ({ data }: { data: CountryDataResponse }) => {
                     display: flex;
                     width: 85%;
                     margin-top: 64px;
-                    background: rgba(33, 33, 33, 0.95);
+                    background: #282B33;
                     padding: 24px;
                     border-radius: 8px;
                 }

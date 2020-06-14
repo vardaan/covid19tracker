@@ -1,5 +1,13 @@
 import { formatNumber } from '../utils/utils';
-const SummaryCard = (props) => {
+
+interface Props {
+    title: string;
+    subtitle: string;
+    count: number;
+    color: string;
+    className: string;
+}
+const SummaryCard = (props: Props) => {
     return (
         <div className={'container'}>
             <div className={'title'}>{props.title}</div>
@@ -11,7 +19,7 @@ const SummaryCard = (props) => {
             )}
             <style jsx>{`
                 .container {
-                    background: rgba(33, 33, 33, 0.95);
+                    background: #282B33;
                     padding: 32px;
                     margin-top: 32px;
                     margin-right: 32px;

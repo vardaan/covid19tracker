@@ -1,60 +1,37 @@
-import Head from 'next/head';
-import NavBar from '../components/NavBar';
-import SummaryView from '../components/SumarryView';
-import CountryView from '../components/CountryView';
 import React from 'react';
-import { CountryDataResponse } from '../data/CountryData';
-import { CovidDatav2 } from '../data/CovidData2';
-import * as firebase from 'firebase';
+import Head from 'next/head';
+import NavBar from '../../components/NavBar';
+import { CountryDetailResponse } from '../../data/CountryDetail';
+import CountrySummaryView from '../../components/CountrySummaryView';
+import Graph from '../../components/Graph';
+import CountryGraphs from '../../components/CountryGraphs';
 
+interface Props {}
 interface State {
-    data: CovidDatav2;
-    countryData: CountryDataResponse;
+    data: CountryDetailResponse;
 }
-export default class Home extends React.Component<any, State> {
+export default class CountryPage extends React.Component<Props, State> {
     constructor(props) {
         super(props);
-        this.state = { data: null, countryData: null };
+        this.state = { data: null };
     }
 
     async componentDidMount() {
-        try {
-            const timelineRes = await fetch('https://corona-api.com/timeline');
-            const data = (await timelineRes.json()) as CovidDatav2;
-            data && this.setState({ data });
-        } catch (e) {}
-        this.getCountryData();
-
-        const isProduction = process.env.NODE_ENV === 'production';
-        isProduction && this.initialiseFirebase();
+        const res = await fetch(`https://corona-api.com/countries/${this.props.code}`);
+        const data = (await res.json()) as CountryDetailResponse;
+        this.setState({ data });
     }
 
-    initialiseFirebase() {
-        const firebaseConfig = {
-            apiKey: process.env.FIREBASE_API_KEY,
-            authDomain: process.env.FIREBASE_API_DOMAIN,
-            databaseURL: process.env.FIREBASE_API_DB_URL,
-            projectId: process.env.FIREBASE_API_PROJECT_ID,
-            storageBucket: process.env.FIREBASE_API_STORAGE_BUCKET,
-            messagingSenderId: process.env.FIREBASE_API_MESSAGING_SENDER_ID,
-            appId: process.env.FIREBASE_API_APP_ID,
-            measurementId: process.env.FIREBASE_API_MEASUREMENT_ID,
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const app = firebase.analytics();
-        app.logEvent('page_view', {});
+    static getInitialProps({ query: { id } }) {
+        return { code: id };
     }
-
-    getCountryData = async () => {
-        try {
-            const res = await fetch('https://corona-api.com/countries');
-            const data = (await res.json()) as CountryDataResponse;
-            data && this.setState({ countryData: data });
-        } catch (e) {}
-    };
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     render() {
-        const { data, countryData } = this.state;
+        const graphData =
+            this.state.data &&
+            this.state.data.data.timeline.map(({ date, confirmed }) => {
+                return { x: new Date(date), y: confirmed };
+            });
         return (
             <div className="container">
                 <Head>
@@ -75,8 +52,8 @@ export default class Home extends React.Component<any, State> {
                 <NavBar />
                 <main>
                     <>
-                        {data && <SummaryView data={data} />}
-                        {countryData && <CountryView data={countryData} />}
+                        {this.state.data && <CountrySummaryView data={this.state.data} />}
+                        {this.state.data && <CountryGraphs data={this.state.data} />}
                     </>
                 </main>
 

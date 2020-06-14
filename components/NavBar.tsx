@@ -12,7 +12,7 @@ const NavBar = () => (
                 display: flex;
                 left: 0px;
                 top: 0px;
-                background: rgba(33, 33, 33, 0.95);
+                background: #282b33;
             }
             .title {
                 font-family: Roboto;
@@ -34,8 +34,8 @@ const NavBar = () => (
                 }
                 .applogo {
                     height: 52px;
-										margin-left: 24px;
-										margin-top:10px;
+                    margin-left: 24px;
+                    margin-top: 10px;
                 }
             }
         `}</style>
