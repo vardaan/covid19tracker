@@ -3,10 +3,11 @@ import Head from 'next/head';
 import NavBar from '../../components/NavBar';
 import { CountryDetailResponse } from '../../data/CountryDetail';
 import CountrySummaryView from '../../components/CountrySummaryView';
-import Graph from '../../components/Graph';
 import CountryGraphs from '../../components/CountryGraphs';
 
-interface Props {}
+interface Props {
+    code: string;
+}
 interface State {
     data: CountryDetailResponse;
 }

@@ -2,7 +2,7 @@ import { formatNumber } from '../utils/utils';
 
 interface Props {
     title: string;
-    subtitle: string;
+    subtitle?: string;
     count: number;
     color: string;
     className: string;
