@@ -28,14 +28,6 @@ const SumarryView = ({ data }: { data: CovidDatav2 }) => {
                 subtitle={countryData.new_recovered + ' newly recovered'}
                 color={'#02EEAB'}
             />
-
-            <SummaryCard
-                className={'item'}
-                title={'Total Recovery'}
-                count={countryData.critical}
-                subtitle={countryData.new_recovered + ' newly recovered'}
-                color={'#02EEAB'}
-            />
             <style jsx>{`
                 .container {
                     display: grid;
